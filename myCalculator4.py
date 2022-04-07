@@ -125,7 +125,7 @@ function_pad_list = [
 # create function buttons with loop
 r = 0
 c = 0
-for btn_text in constants_pad_list:
+for btn_text in function_pad_list:
     def cmd(x=btn_text):
         click(x) ##click에 인수(숫자)를 줄 수 없기 때문에 함수로 호출
     # this will be handled later:
