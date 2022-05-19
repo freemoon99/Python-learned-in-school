@@ -62,11 +62,11 @@ class Bat:
         self.y_posn = self.y_start
 
     #### methods
-    def detect_collision(self, ball):
+    def detect_collision(self, ball, sides_sweet_spot=True, topnbottom_sweet_spot=False):
         collision_direction = ""
         collision = False
         feel = 5
-
+        
         #bat
         top = self.y_posn
         bottom = self.y_posn + self.height
@@ -106,5 +106,13 @@ class Bat:
             else:
                 collision_direction = "miss"
 
+            if((sides_sweet_spot == True) and (collision_direction == "W" or collision_direction == "E")):
+                adjustment = (-(v_centre - v_centre_b))/(self.height/2)
+                ball.y_speed = feel * adjustment
+                
+            if((topnbottom_sweet_spot == True) and (collision_direction == "N" or collision_direction == "S")):
+                adjustment = (-(h_centre - h_centre_b))/(self.width/2)
+                ball.x_speed = feel * adjustment
+            
             return (collision, collision_direction)
 
